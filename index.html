@@ -1,91 +1,190 @@
 <!DOCTYPE html>
-<html>
-<script src="script.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="style.css">
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leandro Magonza — Fullstack Developer & Game Designer</title>
+  <meta name="description"
+    content="Portfolio of Leandro Magonza — Fullstack Developer and Game Designer/Developer with 8 years of professional experience building web apps and video games.">
+  <meta name="author" content="Leandro Magonza">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Leandro Magonza — Fullstack Developer & Game Designer">
+  <meta property="og:description"
+    content="Fullstack Developer and Game Designer/Developer with 8 years of professional experience.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://leandromagonza.github.io/">
+
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
 
 <body>
-  <section class="dark">
-    <div class="container py-4">
-      <h1 class="h1 text-center" id="pageHeaderTitle">Leandro Magonza - Game Dev</h1>
-      <h4 class="text-center">7 years developing software professionally.</h4>
-      <hr>
-      <h2 class="text-center">About Me</h2>
-      <div class="aboutMe">
-        <p>
-          I'm a Unity Game Developer with 3 years of experience and a had been a Fullstack Web Developer since 4 years
-          before. I have experience designing boardgames, live events such as treasure hunts and escape rooms, and
-          programming video games, including turn-based and real-time, single and online multiplayer (with Photon).
-        </p>
-        <p>Currently on the last year of my bachelor's degree in Computer Systems </p>
-        <p>I mainly focus on game systems, data handling, architecture and algorithms. I'm fluent in Spanish and have
-          advanced proficiency in English.
-        </p>
-      </div>
-      <hr>
-      <div class="row">
-        <div class="col-1"></div>
-        <div class="col-5">
-          <h3>Experienced in:</h3>
-          <ul>
-            <li>Unity</li>
-            <li>Multiplayer with Photon (PUN2)</li>
-            <li>Design Patterns</li>
-            <li>Integrating LLMs and Cognitive Architecture (GPTs)</li>
-            <li>Web Dev: Javascript, PHP, SQL, React</li>
-            <li>GIT</li>
-          </ul>
-        </div>
-        <div class="col-5">
-          <h3>With knowledge of:</h3>
-          <ul>
-            <li>Blender</li>
-            <li>Photon QUANTUM</li>
-            <li>Adobe:
-              <ul>
-                <li>Photoshop</li>
-                <li>Premiere</li>
-                <li>Illustrator</li>
-              </ul>
-            </li>
-            <li>Java</li>
+  <!-- Ambient background glows -->
+  <div class="bg-glows" aria-hidden="true"></div>
 
-          </ul>
-        </div>
-      </div>
-      <hr>
-
-      <h2 class="h1 text-center" id="pageHeaderTitle">My Game Projects</h2>
-
-      <!-- Container for dynamically loaded game projects -->
-      <div id="games-container">Loading games...</div>
-
+  <!-- Navbar -->
+  <header class="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="#top">
+        <span class="nav__logo">LM</span>
+        <span class="nav__name">Leandro Magonza</span>
+      </a>
+      <nav class="nav__links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a class="nav__cta" href="https://github.com/LeandroMagonza" target="_blank" rel="noopener">
+          <i class="fab fa-github"></i><span>GitHub</span>
+        </a>
+      </nav>
     </div>
-  </section>
+  </header>
 
-  <!-- Single Modal Structure -->
-  <div id="gameModal" class="modal " onclick="closeModal()">
-    <div class="modal-content dark" id="gameModalContent" onclick="event.stopPropagation()">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <h1 id="modalTitle"></h1>
-      <input type="hidden" value='0' id="currentGameIndex">
-      <p id="modalDescription"></p>
-      <div class="modal-links" id="modal-links"></div>
-      <div id="carouselContainer" class="carousel-container">
-        <!-- Carousel inner container to hold the images --> <button onclick="scrollSlide(-1)"
-          class="carousel-control left">&lt;</button>
-        <div id="carouselInner" class="carousel-inner">
-          <!-- Carousel images will be inserted here dynamically -->
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero__inner">
+        <p class="hero__eyebrow">Fullstack Developer · Game Designer &amp; Developer</p>
+        <h1 class="hero__title">Leandro<br><span class="grad-text">Magonza</span></h1>
+        <p class="hero__lead">
+          I build software for a living and design games because I love it —
+          <strong>8 years</strong> turning systems, mechanics and ideas into things people actually use and play.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#projects">
+            <i class="fas fa-gamepad"></i> View Projects
+          </a>
+          <a class="btn btn--ghost" href="https://github.com/LeandroMagonza" target="_blank" rel="noopener">
+            <i class="fab fa-github"></i> GitHub
+          </a>
         </div>
-        <!-- Arrows -->
-
-        <button onclick="scrollSlide(1)" class="carousel-control right">&gt;</button>
+        <ul class="hero__stats">
+          <li>
+            <span class="stat__num">8<span class="stat__plus">+</span></span>
+            <span class="stat__label">Years of experience</span>
+          </li>
+          <li>
+            <span class="stat__num">8</span>
+            <span class="stat__label">Game projects</span>
+          </li>
+          <li>
+            <span class="stat__num">4</span>
+            <span class="stat__label">Years in Unity</span>
+          </li>
+        </ul>
       </div>
+    </section>
 
+    <!-- About -->
+    <section class="about" id="about">
+      <div class="section__head">
+        <span class="section__kicker">Who I am</span>
+        <h2 class="section__title">About Me</h2>
+      </div>
+      <div class="about__grid">
+        <div class="about__text">
+          <p>
+            I'm a <strong>Fullstack Developer</strong> with <strong>8 years</strong> of professional experience.
+            Along the way I spent <strong>4 years</strong> working as a Unity Game Developer, and I've since returned to
+            fullstack development — bringing that game-systems mindset back to the web.
+          </p>
+          <p>
+            I have experience designing board games, running live events such as treasure hunts and escape rooms, and
+            programming video games: turn-based and real-time, single-player and online multiplayer (with Photon).
+          </p>
+          <p>
+            I mainly focus on game systems, data handling, architecture and algorithms. I hold a bachelor's degree in
+            Computer Systems. I'm a native Spanish speaker with advanced proficiency in English.
+          </p>
+        </div>
+        <div class="about__skills">
+          <div class="skills__group">
+            <h3 class="skills__title"><i class="fas fa-star"></i> Experienced in</h3>
+            <ul class="chips">
+              <li>Unity</li>
+              <li>C#</li>
+              <li>Photon (PUN2)</li>
+              <li>Design Patterns</li>
+              <li>JavaScript</li>
+              <li>React</li>
+              <li>PHP</li>
+              <li>SQL</li>
+              <li>Git</li>
+              <li>LLM Integration (GPTs)</li>
+            </ul>
+          </div>
+          <div class="skills__group">
+            <h3 class="skills__title"><i class="fas fa-seedling"></i> Familiar with</h3>
+            <ul class="chips chips--muted">
+              <li>Blender</li>
+              <li>Photon Quantum</li>
+              <li>Java</li>
+              <li>Photoshop</li>
+              <li>Premiere</li>
+              <li>Illustrator</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="projects" id="projects">
+      <div class="section__head">
+        <span class="section__kicker">Selected work</span>
+        <h2 class="section__title">Game Projects</h2>
+        <p class="section__sub">Click any card to see screenshots, links and details.</p>
+      </div>
+      <div id="games-container" class="projects__grid">Loading projects…</div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div>
+        <p class="footer__name">Leandro Magonza</p>
+        <p class="footer__role">Fullstack Developer &amp; Game Designer</p>
+      </div>
+      <div class="footer__links">
+        <a href="https://github.com/LeandroMagonza" target="_blank" rel="noopener">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+        <a href="mailto:leandro.magonza@gmail.com">
+          <i class="fas fa-envelope"></i> Email
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Project Modal -->
+  <div id="gameModal" class="modal" onclick="closeModal()">
+    <div class="modal__content" id="gameModalContent" onclick="event.stopPropagation()">
+      <button class="modal__close" onclick="closeModal()" aria-label="Close">&times;</button>
+      <input type="hidden" value="0" id="currentGameIndex">
+      <h2 id="modalTitle" class="modal__title"></h2>
+      <div class="modal__links" id="modal-links"></div>
+      <p id="modalDescription" class="modal__desc"></p>
+      <div id="carouselContainer" class="carousel">
+        <button onclick="scrollSlide(-1)" class="carousel__ctrl carousel__ctrl--left" aria-label="Previous">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <div id="carouselInner" class="carousel__inner"></div>
+        <button onclick="scrollSlide(1)" class="carousel__ctrl carousel__ctrl--right" aria-label="Next">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
     </div>
   </div>
 
+  <script src="script.js"></script>
 </body>
 
 </html>

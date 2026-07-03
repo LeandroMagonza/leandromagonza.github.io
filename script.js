@@ -63,7 +63,7 @@ const games = [
       "Chess-based game, but with simultaneous action selection, so you don't know what the opponent moved on your turn, and then resolves automatically.",
     playLink: "https://leandromagonza.github.io/SecretChess/",
     codeLink: "https://github.com/LeandroMagonza/SecretChess",
-    images: ["secretChess.png", "secretChess2.png", "secretChess3.png"] 
+    images: ["secretChess.png", "secretChess2.png", "secretChess3.png"]
   },
   {
     id: "rootKnight",
@@ -104,7 +104,7 @@ const games = [
       "ticTacToeOnSteroids3.png",
       "ticTacToeOnSteroids4.png",
       "ticTacToeOnSteroids5.png"
-    ] // Replace with actual image links
+    ]
   },
   {
     id: "cardCrawler",
@@ -122,215 +122,122 @@ const games = [
   }
 ];
 
-/*  function setupCarousel(images) {
-      const carouselInner = document.getElementById("carouselInner");
-      carouselInner.innerHTML = images
-        .map(
-          (image) =>
-            `<img src="${image}" class="carousel-image" style="max-width: 100%; display: none;">`
-        )
-        .join("");
-    
-      // Show the first image
-      console.log("setting carrousel on slide"+currentSlide);
-      showSlides(currentSlide);
-    }
-    */
+const IMG_BASE = "https://leandromagonza.github.io/portfolioImages/";
 
+// Per-card accent (rotates through the four brand colors)
+const CARD_ACCENTS = [
+  { accent: "var(--accent-red)", glow: "rgba(255, 84, 112, 0.5)" },
+  { accent: "var(--accent-green)", glow: "rgba(74, 222, 128, 0.45)" },
+  { accent: "var(--accent-blue)", glow: "rgba(56, 189, 248, 0.5)" },
+  { accent: "var(--accent-yellow)", glow: "rgba(251, 191, 36, 0.45)" }
+];
+
+// Available link types, rendered only when the game defines them
+const LINK_TYPES = [
+  { key: "playStoreLink", icon: "fab fa-google-play", label: "Google Play" },
+  { key: "trailerLink", icon: "fas fa-play", label: "Trailer" },
+  { key: "playLink", icon: "fas fa-gamepad", label: "Play Demo" },
+  { key: "codeLink", icon: "fas fa-code", label: "Code" },
+  { key: "updateLink", icon: "fas fa-bullhorn", label: "Update" }
+];
+
+function buildLinks(game) {
+  return LINK_TYPES.filter((t) => game[t.key])
+    .map(
+      (t) =>
+        `<a class="link-btn" href="${game[t.key]}" target="_blank" rel="noopener" onclick="event.stopPropagation()"><i class="${t.icon}"></i><span>${t.label}</span></a>`
+    )
+    .join("");
+}
+
+function loadGames() {
+  const gamesContainer = document.getElementById("games-container");
+  gamesContainer.innerHTML = games
+    .map((game, index) => {
+      const c = CARD_ACCENTS[index % CARD_ACCENTS.length];
+      return `
+        <article class="project-card" style="--card-accent:${c.accent};--card-glow:${c.glow}"
+                 role="button" tabindex="0" onclick="openModal('${game.id}')"
+                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openModal('${game.id}')}">
+          <div class="project-card__media">
+            <img src="${IMG_BASE}${game.images[0]}" alt="${game.name}" loading="lazy">
+          </div>
+          <div class="project-card__body">
+            <h3 class="project-card__title">${game.name}</h3>
+            <p class="project-card__desc">${game.description}</p>
+            <div class="project-card__links" onclick="event.stopPropagation()">
+              ${buildLinks(game)}
+            </div>
+          </div>
+        </article>`;
+    })
+    .join("");
+}
+
+/* ---------- Carousel ---------- */
 function scrollSlide(n) {
   const slides = document.getElementsByClassName("carousel-image");
-  let currentSlideIndex = -1;
+  if (!slides.length) return;
 
-  // Find the index of the currently displayed slide
+  let currentSlideIndex = -1;
   for (let i = 0; i < slides.length; i++) {
     if (!slides[i].classList.contains("hide")) {
       currentSlideIndex = i;
       break;
     }
   }
+  if (currentSlideIndex === -1) currentSlideIndex = 0;
 
-  // If no slide is currently visible, default to the first slide
-  if (currentSlideIndex === -1) {
-    currentSlideIndex = 0;
-  }
-
-  // Calculate the new index
-  let newSlideIndex = (currentSlideIndex + n + slides.length) % slides.length;
-
-  // Hide the current slide by adding the 'hide' class
+  const newSlideIndex = (currentSlideIndex + n + slides.length) % slides.length;
   slides[currentSlideIndex].classList.add("hide");
-
-  // Show the new slide by removing the 'hide' class
   slides[newSlideIndex].classList.remove("hide");
-
-  console.log("Displaying slide number " + newSlideIndex);
 }
 
 function hideSlides() {
   const slides = document.getElementsByClassName("carousel-image");
-
-  for (let slide of slides) {
-    if (!slide.classList.contains("hide")) {
-      slide.classList.add("hide");
-    }
-  }
+  for (const slide of slides) slide.classList.add("hide");
 }
 
-function loadGames() {
-  const gamesContainer = document.getElementById("games-container");
-  gamesContainer.innerHTML = ""; // Clear the container
-  games.forEach((game, index) => {
-    // Create the card HTML
-
-    const cardHtml = `
-          <article class="postcard dark ${getCardColor(index)}" onclick="openModal('${game.id
-      }')">
-                    <a class="postcard__img_link" >
-                        <img class="postcard__img" 
-                        src="https://leandromagonza.github.io/portfolioImages/${game.images[0]
-      }"
-                        alt="${game.name}" />
-                    </a>
-                    <div class="postcard__text">
-                        <h1 class="postcard__title red"><a href="#">${game.name
-      }</a></h1>
-                        
-                        <div class="postcard__bar"></div>
-                        <div class="postcard__preview-txt">${game.description
-      }</div>
-                        ${CreateTagboxList(game)}
-                        </div>
-                    </div>
-                </article>
-                `;
-
-    // Append the card to the container
-    gamesContainer.innerHTML += cardHtml;
-  });
-}
-function CreateTagboxList(game) {
-  const cardTagbox = `
-    <ul class="postcard__tagbox">
-     <li class="tag__item play ${!game.hasOwnProperty("playStoreLink") ? "hide" : ""
-    }" id="modalViewPlayStoreItem">
-            <a id="modalViewPlayStore" onclick="event.stopPropagation();" href="${game.playStoreLink
-    }"><i class="fas fa-exclamation mr-2"></i>Google Play Store</a>
-          </li>
-          <li class="tag__item play  ${!game.hasOwnProperty("trailerLink") ? "hide" : ""
-    }" id="modalPlayTrailerItem">
-            <a id="modalPlayTrailer" onclick="event.stopPropagation();" href="${game.trailerLink
-    }"><i class="fas fa-play mr-2"></i>View Trailer</a>
-          <li class="tag__item play  ${!game.hasOwnProperty("playLink") ? "hide" : ""
-    }" id="modalPlayLinkItem">
-            <a id="modalPlayLink" onclick="event.stopPropagation();" href="${game.playLink
-    }"><i class="fas fa-gamepad mr-2"></i>Play Demo</a>
-          </li>
-          <li class="tag__item play ${!game.hasOwnProperty("codeLink") ? "hide" : ""
-    }" id="modalCodeLinkItem">
-            <a id="modalCodeLink" onclick="event.stopPropagation();" href="${game.codeLink
-    }"><i class="fas fa-code mr-2"></i>View Code</a>
-          </li>
-          <li class="tag__item play ${!game.hasOwnProperty("updateLink") ? "hide" : ""
-    }" id="modalViewUpdateItem">
-            <a id="modalViewUpdate" onclick="event.stopPropagation();" href="${game.updateLink
-    }"><i class="fas fa-exclamation mr-2"></i>Last Update</a>
-          </li>
-         
-  
-        </ul>`;
-  return cardTagbox;
-}
+/* ---------- Modal ---------- */
 function openModal(gameId) {
   const game = games.find((g) => g.id === gameId);
   if (!game) return;
 
-  // Set the content for the modal
   document.getElementById("modalTitle").textContent = game.name;
   document.getElementById("modalDescription").textContent = game.description;
-  document.getElementById("modal-links").innerHTML = CreateTagboxList(game);
+  document.getElementById("modal-links").innerHTML = buildLinks(game);
 
-  // Set up the carousel images
   const carouselInner = document.getElementById("carouselInner");
   carouselInner.innerHTML = game.images
     .map(
       (image) =>
-        `<img class="carousel-image" src="https://leandromagonza.github.io/portfolioImages/${image}" alt="${game.name}">`
+        `<img class="carousel-image" src="${IMG_BASE}${image}" alt="${game.name}">`
     )
     .join("");
 
-  // Display the modal
-  document.getElementById("gameModal").style.display = "block";
+  const modal = document.getElementById("gameModal");
+  modal.classList.add("open");
+  document.body.style.overflow = "hidden";
+
+  // Show the first image
   hideSlides();
-  scrollSlide(1);
+  const first = carouselInner.querySelector(".carousel-image");
+  if (first) first.classList.remove("hide");
 }
 
 function closeModal() {
-  var modal = document.getElementById("gameModal");
-  modal.style.display = "none";
+  document.getElementById("gameModal").classList.remove("open");
+  document.body.style.overflow = "";
   hideSlides();
 }
 
-// Close modal when clicking anywhere outside the modal content
-window.onclick = function (event) {
-  if (event.target === document.getElementById("gameModal")) {
-    closeModal();
-  }
-};
+// Keyboard controls while the modal is open
+document.addEventListener("keydown", (e) => {
+  const modal = document.getElementById("gameModal");
+  if (!modal || !modal.classList.contains("open")) return;
+  if (e.key === "Escape") closeModal();
+  else if (e.key === "ArrowLeft") scrollSlide(-1);
+  else if (e.key === "ArrowRight") scrollSlide(1);
+});
 
-/*
-    function getCurrentTransform(element) {
-      var style = window.getComputedStyle(element);
-      var matrix = new WebKitCSSMatrix(style.transform);
-      return matrix.m41;
-    }
-      
-      function setupCarousel(images, gameId) {
-      const carouselInner = document.getElementById("carouselInner");
-      carouselInner.innerHTML = images
-        .map(
-          (image, index) =>
-            `<img src="https://leandromagonza.github.io/portfolioImages/${image}" class="carousel-image" style="${
-              index === 0 ? "display: block;" : "display: none;"
-            }" alt="Image">`
-        )
-        .join("");
-    
-      // Set current slide index
-      currentSlideIndex[gameId] = 0;
-    }
-    */
-
-function getCardColor(index) {
-  console.log("called get card color with index " + index);
-  const colorIndex = index % 4;
-
-  switch (colorIndex) {
-    case 0:
-      console.log("RED " + colorIndex);
-      return "red";
-    case 1:
-      console.log("GREEN " + colorIndex);
-      return "green";
-    case 2:
-      console.log("BLUE " + colorIndex);
-      return "blue";
-    case 3:
-      console.log("YELLOW " + colorIndex);
-      return "yellow";
-    default:
-      console.log("RED DEFAULT" + colorIndex);
-      return "red";
-  }
-}
-
-function hideElement(element) {
-  if (!element.classList.contains("hide")) {
-    element.classList.add("hide");
-  }
-}
-function showElement(element) {
-  if (element.classList.contains("hide")) {
-    element.classList.remove("hide");
-  }
-}
 window.onload = loadGames;
