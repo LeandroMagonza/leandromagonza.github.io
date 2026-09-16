@@ -6,12 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Juegos · Leandro Magonza</title>
   <meta name="description"
-    content="Tres juegos de tablero abstractos para jugar en el navegador: TicTacTotem, Ajedrez del Bosque y Castillo Dorado.">
+    content="Juegos para jugar en el navegador: TicTacTotem, Ajedrez del Bosque, Secret Chess, Castillo Dorado y MemoGram.">
   <meta name="author" content="Leandro Magonza">
 
   <meta property="og:title" content="Juegos · Leandro Magonza">
   <meta property="og:description"
-    content="Tres juegos de tablero abstractos, jugables en el navegador contra un bot.">
+    content="Cuatro juegos de tablero con bot y un juego de memoria, jugables en el navegador.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://leandromagonza.github.io/games/">
 
@@ -141,8 +141,8 @@
   <main class="juegos">
     <div class="section__head">
       <span class="section__kicker">Para jugar en el navegador</span>
-      <h1 class="section__title">Juegos de <span class="grad-text">tablero</span></h1>
-      <p class="section__sub">Tres abstractos para dos, cada uno con un bot para jugar en contra. Sin instalar nada.</p>
+      <h1 class="section__title">Juegos para <span class="grad-text">el navegador</span></h1>
+      <p class="section__sub">Cuatro juegos de tablero para dos, cada uno con un bot para jugar en contra, y un juego de memoria para uno. Sin instalar nada.</p>
     </div>
 
     <div class="juegos__grid">
@@ -203,6 +203,34 @@
         </div>
       </article>
 
+      <article class="project-card juego" style="--card-accent:#4ADE80;--card-glow:rgba(74,222,128,.4)">
+        <div class="project-card__media">
+          <img src="img/secret-chess.webp" width="1200" height="750" loading="lazy"
+            alt="Partida de Secret Chess en curso: tablero de ajedrez con piezas rojas y azules, dos flechas que muestran las jugadas reveladas de la ronda y, al lado, la crónica de lo que pasó.">
+        </div>
+        <div class="project-card__body">
+          <p class="juego__meta">8×8 · jugadas simultáneas</p>
+          <h2 class="project-card__title">
+            <a href="https://leandromagonza.github.io/SecretChess/">Secret Chess</a>
+          </h2>
+          <p class="project-card__desc">
+            Ajedrez sin turnos: cada ronda los dos eligen una jugada a ciegas y recién después
+            se revelan y se resuelven juntas. No hay jaque; gana quien captura al rey del otro.
+          </p>
+          <p class="juego__distinto">
+            Si te capturan una pieza antes de que le toque moverse, su jugada se pierde. Y el
+            bot no juega siempre lo mismo: mezcla sus jugadas para que no lo puedas emboscar.
+            Contra la IA en tres niveles o pass and play.
+          </p>
+          <div class="project-card__links">
+            <span class="juego__jugar">Jugar <i class="fas fa-arrow-right"></i></span>
+            <a class="link-btn" href="https://github.com/LeandroMagonza/SecretChess" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i> Código
+            </a>
+          </div>
+        </div>
+      </article>
+
       <article class="project-card juego" style="--card-accent:#FBBF24;--card-glow:rgba(251,191,36,.4)">
         <div class="project-card__media">
           <img src="img/castillo-dorado.webp" width="1200" height="750" loading="lazy"
@@ -225,6 +253,37 @@
           <div class="project-card__links">
             <span class="juego__jugar">Jugar <i class="fas fa-arrow-right"></i></span>
             <a class="link-btn" href="https://github.com/LeandroMagonza/castillo-dorado" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i> Código
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card juego" style="--card-accent:#A78BFA;--card-glow:rgba(167,139,250,.45)">
+        <div class="project-card__media">
+          <img src="img/memogram.webp" width="1200" height="750" loading="lazy"
+            alt="MemoGram: a la izquierda el menú de Animal Kingdom, a la derecha una partida con un sticker en pantalla y la grilla de números para responder.">
+        </div>
+        <div class="project-card__body">
+          <p class="juego__meta">Un jugador · memoria</p>
+          <h2 class="project-card__title">
+            <a href="https://leandromagonza.github.io/MemoryGame/">MemoGram</a>
+          </h2>
+          <p class="project-card__desc">
+            Van apareciendo stickers, de a uno. Con cada uno tenés que decir cuántas veces
+            ya salió desde que empezó la partida. Cuantos más stickers distintos entran en
+            juego, más difícil es llevar la cuenta.
+          </p>
+          <p class="juego__distinto">
+            Tiene niveles, combos y mejoras que se eligen entre partida y partida, y packs de
+            animales, banderas del mundo e idiomas. También está en Google Play.
+          </p>
+          <div class="project-card__links">
+            <span class="juego__jugar">Jugar <i class="fas fa-arrow-right"></i></span>
+            <a class="link-btn" href="https://play.google.com/store/apps/details?id=com.piratepenguin.memogramworldflags" target="_blank" rel="noopener">
+              <i class="fab fa-google-play"></i> Google Play
+            </a>
+            <a class="link-btn" href="https://github.com/LeandroMagonza/MemoryGame" target="_blank" rel="noopener">
               <i class="fab fa-github"></i> Código
             </a>
           </div>
