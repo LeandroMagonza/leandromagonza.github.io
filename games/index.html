@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juegos · Leandro Magonza</title>
+  <meta name="description"
+    content="Tres juegos de tablero abstractos para jugar en el navegador: TicTacTotem, Ajedrez del Bosque y Castillo Dorado.">
+  <meta name="author" content="Leandro Magonza">
+
+  <meta property="og:title" content="Juegos · Leandro Magonza">
+  <meta property="og:description"
+    content="Tres juegos de tablero abstractos, jugables en el navegador contra un bot.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://leandromagonza.github.io/games/">
+
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎲</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Mismo sistema de diseño que el portfolio: esta página sólo agrega lo propio. -->
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .juegos {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 4.5rem 1.5rem 3rem;
+    }
+
+    .juegos__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.75rem;
+    }
+
+    /* En el portfolio la tarjeta abre un modal por JS; acá la tarjeta entera
+       lleva al juego. El enlace del título se estira sobre toda la tarjeta y
+       "Código" queda encima, clickeable aparte. */
+    .juego .project-card__title a::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    .juego .project-card__title a:focus-visible {
+      outline: none;
+    }
+
+    .juego:focus-within {
+      transform: translateY(-6px);
+      border-color: var(--card-accent);
+      box-shadow: 0 26px 60px -24px var(--card-glow);
+    }
+
+    .juego__meta {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.74rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--card-accent);
+      margin: 0 0 0.45rem;
+    }
+
+    /* El portfolio corta la descripción a tres líneas; acá la descripción es
+       el contenido, así que va entera. */
+    .juego .project-card__desc {
+      display: block;
+      -webkit-line-clamp: unset;
+      overflow: visible;
+      margin-bottom: 0.9rem;
+    }
+
+    .juego__distinto {
+      font-size: 0.88rem;
+      color: var(--text);
+      margin: 0 0 1.25rem;
+      padding-left: 0.8rem;
+      border-left: 2px solid var(--card-accent);
+    }
+
+    .juego .project-card__links {
+      position: relative;
+      z-index: 2;
+      align-items: center;
+    }
+
+    .juego__jugar {
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--card-accent);
+    }
+
+    .juego__volver {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-top: 3rem;
+    }
+
+    .juego__volver:hover {
+      color: var(--text);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .juego,
+      .juego img {
+        transition: none !important;
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-glows" aria-hidden="true"></div>
+
+  <header class="nav">
+    <div class="nav__inner">
+      <a class="nav__brand" href="../">
+        <span class="nav__logo">LM</span>
+        <span class="nav__name">Leandro Magonza</span>
+      </a>
+      <nav class="nav__links">
+        <a href="../#projects">Proyectos</a>
+        <a class="nav__cta" href="https://github.com/LeandroMagonza" target="_blank" rel="noopener">
+          <i class="fab fa-github"></i><span>GitHub</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="juegos">
+    <div class="section__head">
+      <span class="section__kicker">Para jugar en el navegador</span>
+      <h1 class="section__title">Juegos de <span class="grad-text">tablero</span></h1>
+      <p class="section__sub">Tres abstractos para dos, cada uno con un bot para jugar en contra. Sin instalar nada.</p>
+    </div>
+
+    <div class="juegos__grid">
+
+      <article class="project-card juego" style="--card-accent:#6BA1FF;--card-glow:rgba(107,161,255,.45)">
+        <div class="project-card__media">
+          <img src="img/tictactotem.webp" width="1200" height="750" loading="lazy"
+            alt="Partida de TicTacTotem en curso: un tablero de tres por tres con fichas numeradas azules y amarillas.">
+        </div>
+        <div class="project-card__body">
+          <p class="juego__meta">3×3 · contra la máquina o de a dos</p>
+          <h2 class="project-card__title">
+            <a href="https://leandromagonza.github.io/TicTacTotem/">TicTacTotem</a>
+          </h2>
+          <p class="project-card__desc">
+            Un ta-te-ti donde cada casilla es una pila. En tu turno colocás una ficha numerada
+            de tu mano o movés una tuya encima de otra de nivel menor, tapándola. Gana quien
+            deja tres propias destapadas en línea.
+          </p>
+          <p class="juego__distinto">
+            Si tu jugada destapa una línea del rival, perdés vos. Y los dos bandos tienen sets
+            distintos —1 2 3 4 4 contra 1 2 3 5 5—, calibrados para que ninguna apertura gane sola.
+          </p>
+          <div class="project-card__links">
+            <span class="juego__jugar">Jugar <i class="fas fa-arrow-right"></i></span>
+            <a class="link-btn" href="https://github.com/LeandroMagonza/TicTacTotem" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i> Código
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card juego" style="--card-accent:#F472B6;--card-glow:rgba(244,114,182,.45)">
+        <div class="project-card__media">
+          <img src="img/animal-chess.webp" width="1200" height="750" loading="lazy" style="object-position:50% 100%"
+            alt="Partida del Ajedrez del Bosque en curso: un tablero de cuatro por cuatro con piezas de animales rosas y celestes.">
+        </div>
+        <div class="project-card__body">
+          <p class="juego__meta">4×4 · ajedrez de iniciación</p>
+          <h2 class="project-card__title">
+            <a href="https://leandromagonza.github.io/animal-chess/">Ajedrez del Bosque</a>
+          </h2>
+          <p class="project-card__desc">
+            Un ajedrez chico, con animales. Cada lado tiene cuatro piezas y una lleva la
+            corona, que le da el movimiento del rey. Ganás por jaque mate o llevando tu
+            coronada a la última fila del rival.
+          </p>
+          <p class="juego__distinto">
+            Las piezas capturadas vuelven a la mano de su dueño y se pueden soltar de nuevo
+            en el tablero, con un número limitado de fichas por partida.
+          </p>
+          <div class="project-card__links">
+            <span class="juego__jugar">Jugar <i class="fas fa-arrow-right"></i></span>
+            <a class="link-btn" href="https://github.com/LeandroMagonza/animal-chess" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i> Código
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card juego" style="--card-accent:#FBBF24;--card-glow:rgba(251,191,36,.4)">
+        <div class="project-card__media">
+          <img src="img/castillo-dorado.webp" width="1200" height="750" loading="lazy"
+            alt="Partida de Castillo Dorado en curso: tablero de cinco por cinco con edificios y unidades azules y naranjas, un castillo violeta, y al lado la lista de jugadas evaluadas por el bot.">
+        </div>
+        <div class="project-card__body">
+          <p class="juego__meta">5×5 · en diseño</p>
+          <h2 class="project-card__title">
+            <a href="https://leandromagonza.github.io/castillo-dorado/">Castillo Dorado</a>
+          </h2>
+          <p class="project-card__desc">
+            Arrancás con el rey solo. Cada edificio que levantás —taller, cuartel, iglesia—
+            trae su unidad y le quita un poder al rey. Ganás metiendo el rey en el castillo con
+            los tres bajo control, o matándole el rey al otro.
+          </p>
+          <p class="juego__distinto">
+            Un edificio es de quien está parado adentro. Y las reglas en prueba se prenden y
+            apagan desde la página, con un panel que muestra cómo evalúa el bot cada jugada tuya.
+          </p>
+          <div class="project-card__links">
+            <span class="juego__jugar">Jugar <i class="fas fa-arrow-right"></i></span>
+            <a class="link-btn" href="https://github.com/LeandroMagonza/castillo-dorado" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i> Código
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <a class="juego__volver" href="../"><i class="fas fa-arrow-left"></i> Volver al portfolio</a>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div>
+        <p class="footer__name">Leandro Magonza</p>
+        <p class="footer__role">Fullstack Developer &amp; Game Designer</p>
+      </div>
+      <div class="footer__links">
+        <a href="https://github.com/LeandroMagonza" target="_blank" rel="noopener">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+        <a href="mailto:leandro.magonza@gmail.com">
+          <i class="fas fa-envelope"></i> Email
+        </a>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>
