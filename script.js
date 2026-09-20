@@ -1,5 +1,19 @@
 const games = [
   {
+    id: "golfKnight",
+    name: "Golf Knight",
+    description:
+      "A summoning spell asked for a great warrior and got a golfer instead. Defend the city gate from the hordes one drive at a time: line enemies up and pierce them all with the driver, freeze shields and shamans with the iron, shove the pack around with the wedge and blink across the field with the putter. Six waves, each introducing a new enemy and the club that answers it. Browser game built with Three.js and TypeScript.",
+    playLink: "https://leandromagonza.github.io/GolfKnight/",
+    codeLink: "https://github.com/LeandroMagonza/GolfKnight",
+    images: [
+      "golfKnight.png",
+      "golfKnight1.png",
+      "golfKnight2.png",
+      "golfKnight3.png"
+    ]
+  },
+  {
     id: "memograms",
     name: "MemoGram",
     description:
