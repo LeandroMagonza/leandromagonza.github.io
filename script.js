@@ -3,8 +3,8 @@ const games = [
     id: "golfKnight",
     name: "Golf Knight",
     description:
-      "A summoning spell asked for a great warrior and got a golfer instead. Defend the city gate from the hordes one drive at a time: line enemies up and pierce them all with the driver, freeze shields and shamans with the iron, shove the pack around with the wedge and blink across the field with the putter. Six waves, each introducing a new enemy and the club that answers it. Browser game built with Three.js and TypeScript.",
-    playLink: "https://leandromagonza.github.io/GolfKnight/",
+      "An isekai golf roguelite: a wizard summoned a knight in shining armor and got a golfer with his clubs instead. Defend the city gate from the hordes with perfect swings: pick the club, aim, charge and nail the timing. Every enemy brings a power to answer, you build your knight with fire, ice, lightning and wind between waves, and a friend can join as Abe, the wizard, from a link. Built with Three.js and TypeScript; free demo and full game on itch.io.",
+    playLink: "https://forja-de-almas.itch.io/golf-knight",
     codeLink: "https://github.com/LeandroMagonza/GolfKnight",
     images: [
       "golfKnight.png",
