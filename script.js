@@ -5,7 +5,7 @@ const games = [
     description:
       "An isekai golf roguelite: a wizard summoned a knight in shining armor and got a golfer with his clubs instead. Defend the city gate from the hordes with perfect swings: pick the club, aim, charge and nail the timing. Every enemy brings a power to answer, you build your knight with fire, ice, lightning and wind between waves, and a friend can join as Abe, the wizard, from a link. Built with Three.js and TypeScript; free demo and full game on itch.io.",
     playLink: "https://forja-de-almas.itch.io/golf-knight",
-    codeLink: "https://github.com/LeandroMagonza/GolfKnight",
+    siteLink: "https://golf-knight.com",
     images: [
       "golfKnight.png",
       "golfKnight1.png",
@@ -152,6 +152,7 @@ const LINK_TYPES = [
   { key: "trailerLink", icon: "fas fa-play", label: "Trailer" },
   { key: "playLink", icon: "fas fa-gamepad", label: "Play Demo" },
   { key: "codeLink", icon: "fas fa-code", label: "Code" },
+  { key: "siteLink", icon: "fas fa-globe", label: "Website" },
   { key: "updateLink", icon: "fas fa-bullhorn", label: "Update" }
 ];
 
